@@ -1,19 +1,19 @@
 <main class="form-signin">
     <h1 class="h3 mb-3 fw-normal">IndTexBr - Login</h1>
    
-    <ng-container *ngIf="!autenticacaoOutput">
+    <form *ngIf="!autenticacaoOutput" (submit)="autenticar()" ngNativeValidate>
       <label for="inputEmail" class="visually-hidden">E-mail</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="E-mail" required autofocus [(ngModel)]="email">
+      <input type="email" id="inputEmail" name="email" class="form-control" placeholder="E-mail" required autofocus [(ngModel)]="email">
       <label for="inputPassword" class="visually-hidden">Senha</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required [(ngModel)]="senha">
-      <button class="w-100 btn btn-lg btn-primary" type="button" (click)="autenticar()">Entrar</button>
-    </ng-container>
+      <input type="password" id="inputPassword" name="senha" class="form-control" placeholder="Senha" required [(ngModel)]="senha">
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
+    </form>
 
-    <ng-container *ngIf="autenticacaoOutput">
+    <form *ngIf="autenticacaoOutput" (submit)="confirmarCodigo()" ngNativeValidate>
       <label>Olá, <strong>{{autenticacaoOutput.nome}}</strong>! Foi enviado um código de verificação para seu celular terminado em <strong>{{autenticacaoOutput.finalCelular}}</strong></label>
-      <input type="number" id="inputVerificacao" class="form-control" placeholder="Código de Verificação" required autofocus [(ngModel)]="codigoVerificacao">
-      <button class="w-100 btn btn-lg btn-primary" type="button" (click)="confirmarCodigo()">Verificar</button>
-    </ng-container>
+      <input type="number" id="inputVerificacao" name="codigoverificacao" class="form-control" placeholder="Código de Verificação" required autofocus [(ngModel)]="codigoVerificacao">
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Verificar</button>
+    </form>
    
    
     <p class="mt-5 mb-3 text-muted">&copy; Murilo E B Santos - 2021</p>
