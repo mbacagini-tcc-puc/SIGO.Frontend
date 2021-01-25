@@ -3,6 +3,10 @@
 <form id="formUsuario" ngNativeValidate (submit)="criarUsuario()">
   <div class="row">
     <div class="col-md-6 col-sm-12">
+      <div>
+        <strong>Dados cadastrais</strong>
+        <hr>
+      </div>
       <label for="inputNome" class="visually-hidden">Nome *</label>
       <input type="text" id="inputNome" name="nome" [(ngModel)]="usuario.nome" class="form-control col-lg-8 col-md-12" required aria-required="true" autofocus>
 
@@ -19,6 +23,7 @@
 
     <div class="col-md-6 col-sm-12">
       <strong>Módulos permitidos</strong>
+      <hr>
       <ul id="modulos">
         <li *ngFor="let modulo of modulos"><input id="modulo{{modulo.id}}" type="checkbox">
           <label class="modulo" for="modulo{{modulo.id}}" (click)="marcarModulo(modulo.id)">{{modulo.nomeExibicao}}</label>
