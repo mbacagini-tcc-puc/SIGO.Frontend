@@ -12,4 +12,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
+  closeSidebarMenu() {
+    document.getElementById('sidebarMenu').classList.remove('show');
+  }
+
 }
