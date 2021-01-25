@@ -6,6 +6,8 @@ import { Observable } from "rxjs";
 import { AutenticacaoOutput } from "../types/outputs/usuarios/autenticacao.output";
 import { ConfirmacaoAutenticacaoInput } from "../types/inputs/usuarios/confirmacao-autenticacao.input";
 import { ConfirmacaoAutenticacaoOutput } from "../types/outputs/usuarios/confirmacao-autenticacao.output";
+import { ModuloOutput } from "../types/outputs/usuarios/modulo.output";
+import { CriacaoUsuarioInput } from "../types/inputs/usuarios/criacao-usuario.input";
 
 @Injectable()
 export class UsuariosService extends HttpService {
@@ -20,5 +22,13 @@ export class UsuariosService extends HttpService {
 
     public confirmarCodigo(input: ConfirmacaoAutenticacaoInput) : Observable<ConfirmacaoAutenticacaoOutput> {
         return this.httpClient.post<ConfirmacaoAutenticacaoOutput>(this.endpoint + "/usuarios/auth/verificacao", input);
+    }
+
+    public obterModulos(): Observable<ModuloOutput[]> {
+        return this.httpClient.get<ModuloOutput[]>(this.endpoint + "/usuarios/modulos", this.getRequestOptions());
+    }
+
+    public criarUsuario(input: CriacaoUsuarioInput): Observable<any> {
+        return this.httpClient.post(this.endpoint + "/usuarios/usuarios", input, this.getRequestOptions());
     }
 }

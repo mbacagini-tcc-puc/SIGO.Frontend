@@ -1,0 +1,36 @@
+<h1 class="h2">Cadastrar Usuário</h1>
+
+<form id="formUsuario" ngNativeValidate (submit)="criarUsuario()">
+  <div class="row">
+    <div class="col-md-6 col-sm-12">
+      <label for="inputNome" class="visually-hidden">Nome *</label>
+      <input type="text" id="inputNome" name="nome" [(ngModel)]="usuario.nome" class="form-control col-lg-8 col-md-12" required aria-required="true" autofocus>
+
+      <label for="inputEmail" class="visually-hidden">E-mail *</label>
+      <input type="email" id="inputEmail" name="email" [(ngModel)]="usuario.email" class="form-control col-lg-8 col-md-12" required aria-required="true">
+
+      <label for="inputSenha" class="visually-hidden">Senha *</label>
+      <input type="password" id="inputSenha" name="senha" [(ngModel)]="usuario.senha" class="form-control col-lg-8 col-md-12" required aria-required="true">
+
+      <label for="inputCelular" class="visually-hidden">Celular *</label>
+      <input type="text" id="inputCelular" name="celular" [(ngModel)]="usuario.celular" class="form-control col-lg-8 col-md-12" required aria-required="true"
+              mask="(00)00000-0000">
+    </div>
+
+    <div class="col-md-6 col-sm-12">
+      <strong>Módulos permitidos</strong>
+      <ul id="modulos">
+        <li *ngFor="let modulo of modulos"><input id="modulo{{modulo.id}}" type="checkbox">
+          <label class="modulo" for="modulo{{modulo.id}}" (click)="marcarModulo(modulo.id)">{{modulo.nomeExibicao}}</label>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 cadastrar-center">
+      <button id="btnCadastrar" class="col-lg-3 btn btn-lg btn-primary" type="submit">Cadastrar</button>
+    </div>
+  </div>
+
+</form>
