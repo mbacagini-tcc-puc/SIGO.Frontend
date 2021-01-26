@@ -28,4 +28,10 @@ export class ConsultoriasService extends HttpService {
     public atualizarAnalise(input: EdicaoAnaliseInput) : Observable<any> {
         return this.httpClient.put<any>(this.endpoint + `/consultorias/analises/${input.id}`, input, this.getRequestOptions());
     }
+
+    public inserirAnexo(analiseId: number, file: File): Observable<any> {
+        const formData: FormData = new FormData();
+        formData.append('anexo', file, file.name);
+        return this.httpClient.post<number>(this.endpoint + `/consultorias/analises/${analiseId}/anexos`, formData, this.getRequestOptions());
+    }
 }

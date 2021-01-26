@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { forkJoin, Observable } from 'rxjs';
 import { ConsultoriasService } from 'src/app/services/consultorias.service';
 import { EdicaoAnaliseInput } from 'src/app/types/inputs/consultorias/edicao-analise.input';
-import { DetalhamentoAnaliseOutput } from 'src/app/types/outputs/consultorias/detalhamento-analise.output';
+import { AnexoOutput, DetalhamentoAnaliseOutput } from 'src/app/types/outputs/consultorias/detalhamento-analise.output';
 
 @Component({
   selector: 'app-edicao-analise',
@@ -14,6 +15,7 @@ export class EdicaoAnaliseComponent implements OnInit {
 
   public analise: EdicaoAnaliseInput;
   public analiseDetalhada: DetalhamentoAnaliseOutput;
+  private novosAnexos: File[] = [];
 
   constructor(private consultoriasService: ConsultoriasService,
               private toastr: ToastrService,
@@ -22,6 +24,7 @@ export class EdicaoAnaliseComponent implements OnInit {
   ngOnInit() {
     this.analise = new EdicaoAnaliseInput();
     this.analiseDetalhada = new DetalhamentoAnaliseOutput();
+    this.analiseDetalhada.anexos = [];
     const id = this.route.snapshot.paramMap.get("idAnalise");
     if(id) {
       this.carregarAnalise(parseInt(id));
@@ -59,7 +62,12 @@ export class EdicaoAnaliseComponent implements OnInit {
     if(this.analise.id) {
       this.consultoriasService.atualizarAnalise(this.analise).subscribe(() => {
         this.toastr.success('Análise atualizada com sucesso', 'Sucesso');
-        this.carregarAnalise(this.analise.id);
+
+        if(this.novosAnexos.length > 0) {
+          this.salvarAnexos();
+        } else {
+          this.carregarAnalise(this.analise.id);
+        }
       }, () => {
         this.toastr.error('Não foi possível salvar a análise. Tente novamente mais tarde', 'Ops');
       });
@@ -67,11 +75,43 @@ export class EdicaoAnaliseComponent implements OnInit {
       this.consultoriasService.inserirAnalise(this.analise).subscribe(id => {
         this.toastr.success('Análise criada com sucesso', 'Sucesso');
         this.analise.id = id;
-        this.carregarAnalise(id);
+
+        if(this.novosAnexos.length > 0) {
+          this.salvarAnexos();
+        } else {
+          this.carregarAnalise(id);
+        }
       }, () => {
         this.toastr.error('Não foi possível salvar a análise. Tente novamente mais tarde', 'Ops');
       });
     }
   }
 
+  salvarAnexos() {
+    this.toastr.info('Enviando anexos...', 'Aviso');
+
+    const obs: Observable<any>[] = [];
+
+    for(let anexo of this.novosAnexos) {
+      obs.push(this.consultoriasService.inserirAnexo(this.analise.id, anexo));
+    }
+
+    forkJoin(obs).subscribe(() => {
+       this.toastr.success('Anexos enviados com sucesso!', 'Sucesso');
+       this.carregarAnalise(this.analise.id);
+    }, (err) => {
+      console.log(err);
+      this.toastr.error('Erro ao salvar anexos', 'Ops');
+      this.carregarAnalise(this.analise.id);
+    });
+  }
+
+  handleAnexo(files: FileList) {
+       const file = files.item(0);
+       const anexo = new AnexoOutput();
+       anexo.nomeArquivo = file.name;
+       this.novosAnexos.push(file);
+       this.analiseDetalhada.anexos.push(anexo);
+       (<HTMLInputElement>document.getElementById("inputAnexo")).value = "";
+  }
 }

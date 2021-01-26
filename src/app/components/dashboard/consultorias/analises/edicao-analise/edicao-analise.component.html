@@ -34,11 +34,10 @@
   
  <div id="anexos">
   <strong>Anexos</strong>
-  <div class="row" style="margin-top: 5px;">
+  <div *ngIf="isEmAndamento()" class="row" style="margin-top: 5px;">
     <div class="col-lg-6">
-      <input type="file" id="inputTitulo" name="titulo">
+      <input type="file" id="inputAnexo" name="anexo" (change)="handleAnexo($event.target.files)">
     </div>
-    
   </div>
    <table id="tableAnexos" class="table">
     <thead>
@@ -46,19 +45,16 @@
       <th>Data inclusão</th>
     </thead>
     <tbody>
-      <tr>
-        <td>Analise 1 - teste.pdf</td>
-        <td>26/01/2021 12:00</td>
+      <tr *ngFor="let anexo of analiseDetalhada.anexos">
+        <td>{{anexo.nomeArquivo}}</td>
+        <td>{{ (anexo.dataInclusao | date: 'dd/MM/yyyy HH:mm') || 'Pendente de envio'}}</td>
       </tr>
-      <tr>
-        <td>Analise 1 - teste.pdf</td>
-        <td>26/01/2021 12:00</td>
+      <tr *ngIf="analiseDetalhada.anexos.length == 0">
+         <td colspan="2" style="text-align: center;">Nenhum arquivo adicionado</td>
       </tr>
     </tbody>
   </table>
  </div>
-
-
 
   <div class="btn-group" *ngIf="isEmAndamento()">
     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -69,5 +65,7 @@
       <button class="dropdown-item" type="submit" (click)="publicar()">Publicar</button>
     </div>
   </div>
+
+  <a id="btnVoltar" class="btn btn-secondary" [routerLink]="['/analises/']">Voltar</a>
 
 </form>
