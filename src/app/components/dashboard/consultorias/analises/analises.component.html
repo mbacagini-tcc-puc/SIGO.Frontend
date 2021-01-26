@@ -1,5 +1,8 @@
 <h1 class="h4">Análises - Consultorias e Assessorias</h1>
 
+<div class="row row-inserir">
+  <button class="btn btn-success">Iniciar nova análise</button>
+</div>
 <div *ngFor="let i of items | paginate: { itemsPerPage: 10, currentPage: currentPage, totalItems: items.length}" class="row analise-row">
   <div class="col-lg-1">
     <div class="row">
