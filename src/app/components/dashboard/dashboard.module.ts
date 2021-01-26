@@ -10,6 +10,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { AnalisesComponent } from './consultorias/analises/analises.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ConsultoriasService } from 'src/app/services/consultorias.service';
+import { EdicaoAnaliseComponent } from './consultorias/analises/edicao-analise/edicao-analise.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { ConsultoriasService } from 'src/app/services/consultorias.service';
   declarations: [
     DashboardComponent,
     CadastroUsuarioComponent,
-    AnalisesComponent
+    AnalisesComponent,
+    EdicaoAnaliseComponent
   ],
   providers: [
     UsuariosService,

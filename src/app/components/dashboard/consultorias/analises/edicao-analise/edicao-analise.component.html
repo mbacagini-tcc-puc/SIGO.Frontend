@@ -1,0 +1,73 @@
+<h1 class="h4">Edição de Análise</h1>
+
+<form ngNativeValidate>
+  <div class="row">
+     <div class="col-lg-6">
+      <label for="inputTitulo" class="visually-hidden">Título *</label>
+      <input type="text" id="inputTitulo" name="titulo" class="form-control" required aria-required="true" autofocus>
+     </div>
+     <div class="col-lg-6">
+      <label for="inputTitulo" class="visually-hidden">Empresa</label>
+      <input type="text" id="inputTitulo" name="titulo" class="form-control" required aria-required="true" autofocus readonly>
+     </div>
+     <div class="col-lg-12">
+      <label for="inputResumo" class="visually-hidden">Resumo *</label>
+      <textarea id="inputResumo" name="inputResumo" maxlength="500" class="form-control" rows="5"></textarea>
+     </div>
+     <div class="col-lg-3">
+      <label for="inputTitulo" class="visually-hidden">Criado por</label>
+      <input type="text" id="inputTitulo" name="titulo" class="form-control" required aria-required="true" autofocus readonly>
+     </div>
+     <div class="col-lg-3">
+      <label for="inputTitulo" class="visually-hidden">Criado em</label>
+      <input type="text" id="inputTitulo" name="titulo" class="form-control" required aria-required="true" autofocus readonly>
+     </div>
+     <div class="col-lg-3">
+      <label for="inputTitulo" class="visually-hidden">Modificado por</label>
+      <input type="text" id="inputTitulo" name="titulo" class="form-control" required aria-required="true" autofocus readonly>
+     </div>
+     <div class="col-lg-3">
+      <label for="inputTitulo" class="visually-hidden">Modificado em</label>
+      <input type="text" id="inputTitulo" name="titulo" class="form-control" required aria-required="true" autofocus readonly>
+     </div>
+  </div>
+  
+ <div id="anexos">
+  <strong>Anexos</strong>
+  <div class="row" style="margin-top: 5px;">
+    <div class="col-lg-6">
+      <input type="file" id="inputTitulo" name="titulo">
+    </div>
+    
+  </div>
+   <table id="tableAnexos" class="table">
+    <thead>
+      <th>Nome do arquivo</th>
+      <th>Data inclusão</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Analise 1 - teste.pdf</td>
+        <td>26/01/2021 12:00</td>
+      </tr>
+      <tr>
+        <td>Analise 1 - teste.pdf</td>
+        <td>26/01/2021 12:00</td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+
+
+
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Salvar Análise
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#">Salvar como rascunho</a>
+      <a class="dropdown-item" href="#">Publicar</a>
+    </div>
+  </div>
+
+</form>
