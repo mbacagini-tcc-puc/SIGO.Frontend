@@ -7,6 +7,8 @@ import { CadastroUsuarioComponent } from './usuarios/cadastro-usuario/cadastro-u
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { FormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
+import { AnalisesComponent } from './consultorias/analises/analises.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   imports: [
@@ -15,10 +17,12 @@ import { NgxMaskModule } from 'ngx-mask';
     FormsModule,
     DashboardRoutingModule,
     NgxMaskModule.forRoot(),
+    NgxPaginationModule
   ],
   declarations: [
     DashboardComponent,
-    CadastroUsuarioComponent
+    CadastroUsuarioComponent,
+    AnalisesComponent
   ],
   providers: [
     UsuariosService

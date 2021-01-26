@@ -1,0 +1,30 @@
+.analise-row {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 10px;
+    border-width: 1px;
+    border-style: dotted;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.analise-header {
+    color: dodgerblue;
+}
+
+.analise-acoes {
+    height: 100%;
+    align-items: center;
+}
+
+@media (max-width: 1000px)
+{
+    .analise-acoes, button {
+        margin-bottom: 4px;
+    }
+}
+
+.paginacao {
+    flex-direction: row;
+    justify-content: flex-end;
+}
