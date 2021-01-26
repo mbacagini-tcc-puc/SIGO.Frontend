@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { NgxMaskModule } from 'ngx-mask';
 import { AnalisesComponent } from './consultorias/analises/analises.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ConsultoriasService } from 'src/app/services/consultorias.service';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AnalisesComponent
   ],
   providers: [
-    UsuariosService
+    UsuariosService,
+    ConsultoriasService
   ]
 })
 export class DashboardModule { }

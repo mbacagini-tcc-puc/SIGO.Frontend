@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ConsultoriasService } from 'src/app/services/consultorias.service';
+import { ConsultaAnaliseOutput } from 'src/app/types/outputs/consultorias/consulta-analise.output';
 
 @Component({
   selector: 'app-analises',
@@ -7,16 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnalisesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private consultoriasService: ConsultoriasService) { }
 
-  public items: Number [];
-  public currentPage: Number;
+  public analises: ConsultaAnaliseOutput[] = [];
+  public currentPage: number = 1;
 
   ngOnInit() {
-    this.items = [];
-    for(let i = 0; i < 50; i++) {
-      this.items.push(i);
-    }
+    this.carregarAnalises();
+  }
+
+  carregarAnalises() {
+    this.consultoriasService.consultarAnalises().subscribe(analises => {
+      this.analises = analises;
+    });
   }
 
 }
