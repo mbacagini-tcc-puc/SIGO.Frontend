@@ -8,7 +8,7 @@
      </div>
      <div class="col-lg-6" *ngIf="!isInclusao()">
       <label for="inputEmpresa" class="visually-hidden">Empresa</label>
-      <input type="text" id="inputEmpresa" name="empresa" class="form-control" readonly>
+      <input type="text" id="inputEmpresa" name="empresa" [value]="analiseDetalhada.empresa" class="form-control" readonly>
      </div>
      <div class="col-lg-12">
       <label for="inputResumo" class="visually-hidden">Resumo *</label>
@@ -16,19 +16,19 @@
      </div>
      <div class="col-lg-3" *ngIf="!isInclusao()">
       <label for="inputUsuarioCriacao" class="visually-hidden">Criado por</label>
-      <input type="text" id="inputUsuarioCriacao" name="usuario-criacao" class="form-control" readonly>
+      <input type="text" id="inputUsuarioCriacao" name="usuario-criacao" [value]="analiseDetalhada.usuarioInclusao" class="form-control" readonly>
      </div>
      <div class="col-lg-3" *ngIf="!isInclusao()">
       <label for="inputDataCriacao" class="visually-hidden">Criado em</label>
-      <input type="text" id="inputDataCriacao" name="data-criacao" class="form-control" readonly>
+      <input type="text" id="inputDataCriacao" name="data-criacao" [value]="analiseDetalhada.dataInclusao | date: 'dd/MM/yyyy HH:mm'" class="form-control" readonly>
      </div>
      <div class="col-lg-3" *ngIf="!isInclusao()">
       <label for="inputDataModificacao" class="visually-hidden">Modificado por</label>
-      <input type="text" id="inputDataModificacao" name="data-modificacao" class="form-control" readonly>
+      <input type="text" id="inputDataModificacao" name="data-modificacao" [value]="analiseDetalhada.usuarioAlteracao" class="form-control" readonly>
      </div>
      <div class="col-lg-3" *ngIf="!isInclusao()">
       <label for="inputUsuarioAlteracao" class="visually-hidden">Modificado em</label>
-      <input type="text" id="inputUsuarioAlteracao" name="usuario-alteracao" class="form-control" readonly>
+      <input type="text" id="inputUsuarioAlteracao" name="usuario-alteracao" [value]="analiseDetalhada.dataAlteracao | date: 'dd/MM/yyyy HH:mm'" class="form-control" readonly>
      </div>
   </div>
   
@@ -60,7 +60,7 @@
 
 
 
-  <div class="btn-group">
+  <div class="btn-group" *ngIf="isEmAndamento()">
     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Salvar Análise
     </button>
