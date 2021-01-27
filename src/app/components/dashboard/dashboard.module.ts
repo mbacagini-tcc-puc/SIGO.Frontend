@@ -11,6 +11,7 @@ import { AnalisesComponent } from './consultorias/analises/analises.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ConsultoriasService } from 'src/app/services/consultorias.service';
 import { EdicaoAnaliseComponent } from './consultorias/analises/edicao-analise/edicao-analise.component';
+import { RouteGuardsModule } from './route-guards';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { EdicaoAnaliseComponent } from './consultorias/analises/edicao-analise/e
     FormsModule,
     DashboardRoutingModule,
     NgxMaskModule.forRoot(),
-    NgxPaginationModule
+    NgxPaginationModule,
+    RouteGuardsModule
   ],
   declarations: [
     DashboardComponent,

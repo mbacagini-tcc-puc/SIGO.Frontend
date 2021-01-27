@@ -31,4 +31,15 @@ export class UsuariosService extends HttpService {
     public criarUsuario(input: CriacaoUsuarioInput): Observable<any> {
         return this.httpClient.post(this.endpoint + "/usuarios/usuarios", input, this.getRequestOptions());
     }
+
+    public validarPermissao(modulo: string): Observable<boolean> {
+        return new Observable<boolean>(obs => {
+            this.httpClient.get(this.endpoint + `/usuarios/auth/permissoes?modulo=${modulo}`, this.getRequestOptions())
+                    .subscribe(() => {
+                        obs.next(true);
+                    }, () => {
+                        obs.next(false);
+                    });
+        });
+    }
 }

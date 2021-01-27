@@ -52,7 +52,7 @@
     <tbody>
       <tr *ngFor="let anexo of analiseDetalhada.anexos">
         <td>
-          <a *ngIf="anexo.id" href="javascript:void();" (click)="download(anexo)">{{anexo.nomeArquivo}}</a>
+          <a *ngIf="anexo.id" href="" (click)="$event.preventDefault(); download(anexo)">{{anexo.nomeArquivo}}</a>
           <span *ngIf="!anexo.id" >{{anexo.nomeArquivo}}</span>
         </td>
         <td>{{ (anexo.dataInclusao | date: 'dd/MM/yyyy HH:mm') || 'Pendente de envio'}}</td>

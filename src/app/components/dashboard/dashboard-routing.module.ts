@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { AnalisesComponent } from "./consultorias/analises/analises.component";
 import { EdicaoAnaliseComponent } from "./consultorias/analises/edicao-analise/edicao-analise.component";
 import { DashboardComponent } from "./dashboard.component";
+import { CanActivateModuloConsultorias, CanActivateModuloUsuarios } from "./route-guards";
 import { CadastroUsuarioComponent } from "./usuarios/cadastro-usuario/cadastro-usuario.component";
 
 const routes: Routes = [
@@ -12,19 +13,23 @@ const routes: Routes = [
         children: [
             {
                 path: 'cadastro-usuario',
-                component: CadastroUsuarioComponent
+                component: CadastroUsuarioComponent,
+                canActivate: [CanActivateModuloUsuarios]
             },
             {
                 path: 'analises',
-                component: AnalisesComponent
+                component: AnalisesComponent,
+                canActivate: [CanActivateModuloConsultorias]
             },
             {
                 path: 'analises/nova',
-                component: EdicaoAnaliseComponent
+                component: EdicaoAnaliseComponent,
+                canActivate: [CanActivateModuloConsultorias]
             },
             {
                 path: 'analises/:idAnalise',
-                component: EdicaoAnaliseComponent
+                component: EdicaoAnaliseComponent,
+                canActivate: [CanActivateModuloConsultorias]
             }    
         ] 
     }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { AutenticacaoInput } from 'src/app/types/inputs/usuarios/autenticacao.input';
@@ -13,7 +14,8 @@ import { AutenticacaoOutput } from 'src/app/types/outputs/usuarios/autenticacao.
 export class LoginComponent implements OnInit {
 
   constructor(private usuariosService: UsuariosService,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private router: Router) { }
 
   public email: string;
   public senha: string;
@@ -46,7 +48,8 @@ export class LoginComponent implements OnInit {
 
     this.usuariosService.confirmarCodigo(confirmacaoInput).subscribe(result => {
        localStorage.setItem("token", result.accessToken);
-       this.toastr.success('Autorizado', "Ok");
+       localStorage.setItem("modulos", result.modulos.join(','));
+       this.router.navigate([''])
     }, (error) => {
       if(error.status && error.status == 401) {
         this.toastr.warning('Código informado inválido ou expirado', 'Ops');

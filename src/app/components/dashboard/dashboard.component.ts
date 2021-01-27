@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,13 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   closeSidebarMenu() {
     document.getElementById('sidebarMenu').classList.remove('show');
+  }
+
+  possuiPermissao(modulo: string): boolean {
+    return localStorage.getItem("modulos").includes(modulo);
+  }
+
+  logout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("modulo");
+    this.router.navigate(['login']);
   }
 
 }
