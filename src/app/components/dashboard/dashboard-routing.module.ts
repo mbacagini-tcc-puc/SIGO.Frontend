@@ -3,13 +3,14 @@ import { RouterModule, Routes } from "@angular/router";
 import { AnalisesComponent } from "./consultorias/analises/analises.component";
 import { EdicaoAnaliseComponent } from "./consultorias/analises/edicao-analise/edicao-analise.component";
 import { DashboardComponent } from "./dashboard.component";
-import { CanActivateModuloConsultorias, CanActivateModuloUsuarios } from "./route-guards";
+import { CanActivateModuloConsultorias, CanActivateModuloHome, CanActivateModuloUsuarios } from "./route-guards";
 import { CadastroUsuarioComponent } from "./usuarios/cadastro-usuario/cadastro-usuario.component";
 
 const routes: Routes = [
     { 
         path: '',
         component: DashboardComponent,
+        canActivate: [CanActivateModuloHome],
         children: [
             {
                 path: 'cadastro-usuario',

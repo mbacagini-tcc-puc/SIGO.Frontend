@@ -16,6 +16,12 @@ class CanActivateModulo implements CanActivate {
 }
 
 @Injectable()
+export class CanActivateModuloHome extends CanActivateModulo {
+    constructor(usuariosService: UsuariosService) { super(usuariosService, "home") }
+}
+
+
+@Injectable()
 export class CanActivateModuloUsuarios extends CanActivateModulo {
     constructor(usuariosService: UsuariosService) { super(usuariosService, "usuarios") }
 }
@@ -28,6 +34,7 @@ export class CanActivateModuloConsultorias extends CanActivateModulo {
 @NgModule({
     imports: [],
     providers: [
+        CanActivateModuloHome,
         CanActivateModuloUsuarios,
         CanActivateModuloConsultorias
     ]

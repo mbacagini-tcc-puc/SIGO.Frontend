@@ -8,11 +8,12 @@ import { ConfirmacaoAutenticacaoInput } from "../types/inputs/usuarios/confirmac
 import { ConfirmacaoAutenticacaoOutput } from "../types/outputs/usuarios/confirmacao-autenticacao.output";
 import { ModuloOutput } from "../types/outputs/usuarios/modulo.output";
 import { CriacaoUsuarioInput } from "../types/inputs/usuarios/criacao-usuario.input";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class UsuariosService extends HttpService {
 
-    constructor(private httpClient: HttpClient) {
+    constructor(private httpClient: HttpClient, private router: Router) {
         super();
     }
 
@@ -37,7 +38,10 @@ export class UsuariosService extends HttpService {
             this.httpClient.get(this.endpoint + `/usuarios/auth/permissoes?modulo=${modulo}`, this.getRequestOptions())
                     .subscribe(() => {
                         obs.next(true);
-                    }, () => {
+                    }, (err) => {
+                        if(err.status == 401) {
+                            this.router.navigate(['login']);
+                        }
                         obs.next(false);
                     });
         });
