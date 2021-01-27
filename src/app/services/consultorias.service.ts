@@ -32,6 +32,14 @@ export class ConsultoriasService extends HttpService {
     public inserirAnexo(analiseId: number, file: File): Observable<any> {
         const formData: FormData = new FormData();
         formData.append('anexo', file, file.name);
-        return this.httpClient.post<number>(this.endpoint + `/consultorias/analises/${analiseId}/anexos`, formData, this.getRequestOptions());
+        return this.httpClient.post<any>(this.endpoint + `/consultorias/analises/${analiseId}/anexos`, formData, this.getRequestOptions());
+    }
+
+    public excluirAnexo(analiseId: number, anexoId: number): Observable<any> {
+        return this.httpClient.delete<any>(this.endpoint + `/consultorias/analises/${analiseId}/anexos/${anexoId}`, this.getRequestOptions());
+    }
+
+    public download(analiseId: number, anexoId: number): Observable<any> {
+        return this.httpClient.get<any>(this.endpoint + `/consultorias/analises/${analiseId}/anexos/${anexoId}/download`, this.getRequestOptions());
     }
 }

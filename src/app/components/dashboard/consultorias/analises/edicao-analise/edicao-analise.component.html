@@ -1,4 +1,8 @@
-<h1 class="h4">Edição de Análise</h1>
+<h1 class="h4">Análise
+  <span class="badge badge-warning analise-badge " *ngIf="status === 'rascunho'">Rascunho</span>
+  <span class="badge badge-success analise-badge " *ngIf="status === 'nova'">Nova</span>
+  <span class="badge badge-primary analise-badge " *ngIf="status === 'publicada'">Publicada</span>
+</h1>
 
 <form ngNativeValidate (submit)="salvar()">
   <div class="row">
@@ -42,12 +46,19 @@
    <table id="tableAnexos" class="table">
     <thead>
       <th>Nome do arquivo</th>
-      <th>Data inclusão</th>
+      <th>Data de inclusão</th>
+      <th></th>
     </thead>
     <tbody>
       <tr *ngFor="let anexo of analiseDetalhada.anexos">
-        <td>{{anexo.nomeArquivo}}</td>
+        <td>
+          <a *ngIf="anexo.id" href="javascript:void();" (click)="download(anexo)">{{anexo.nomeArquivo}}</a>
+          <span *ngIf="!anexo.id" >{{anexo.nomeArquivo}}</span>
+        </td>
         <td>{{ (anexo.dataInclusao | date: 'dd/MM/yyyy HH:mm') || 'Pendente de envio'}}</td>
+        <td>
+          <button *ngIf="isEmAndamento()" type="button" class="btn btn-danger" (click)="excluirAnexo(anexo)">Excluir</button>
+        </td>
       </tr>
       <tr *ngIf="analiseDetalhada.anexos.length == 0">
          <td colspan="2" style="text-align: center;">Nenhum arquivo adicionado</td>
