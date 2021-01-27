@@ -1,6 +1,6 @@
 <h1 class="h4">Análises - Consultorias e Assessorias</h1>
 
-<div class="row row-inserir">
+<div *ngIf="usuarioService.isUsuarioExterno()" class="row row-inserir">
   <a class="btn btn-success" [routerLink]="['/analises/nova']">Iniciar nova análise</a>
 </div>
 <div *ngFor="let analise of analises | paginate: { itemsPerPage: 10, currentPage: currentPage, totalItems: analises.length}" class="row analise-row">

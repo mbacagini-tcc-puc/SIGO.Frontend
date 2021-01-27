@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConsultoriasService } from 'src/app/services/consultorias.service';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 import { ConsultaAnaliseOutput } from 'src/app/types/outputs/consultorias/consulta-analise.output';
 
 @Component({
@@ -9,7 +10,7 @@ import { ConsultaAnaliseOutput } from 'src/app/types/outputs/consultorias/consul
 })
 export class AnalisesComponent implements OnInit {
 
-  constructor(private consultoriasService: ConsultoriasService) { }
+  constructor(private consultoriasService: ConsultoriasService, public usuarioService: UsuariosService) { }
 
   public analises: ConsultaAnaliseOutput[] = [];
   public currentPage: number = 1;

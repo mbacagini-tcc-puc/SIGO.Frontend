@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { forkJoin, Observable } from 'rxjs';
 import { ConsultoriasService } from 'src/app/services/consultorias.service';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 import { EdicaoAnaliseInput } from 'src/app/types/inputs/consultorias/edicao-analise.input';
 import { AnexoOutput, DetalhamentoAnaliseOutput } from 'src/app/types/outputs/consultorias/detalhamento-analise.output';
 
@@ -20,7 +21,8 @@ export class EdicaoAnaliseComponent implements OnInit {
 
   constructor(private consultoriasService: ConsultoriasService,
               private toastr: ToastrService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              public usuariosService: UsuariosService) { }
 
   ngOnInit() {
     this.analise = new EdicaoAnaliseInput();

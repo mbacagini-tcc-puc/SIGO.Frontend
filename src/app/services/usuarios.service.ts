@@ -9,6 +9,7 @@ import { ConfirmacaoAutenticacaoOutput } from "../types/outputs/usuarios/confirm
 import { ModuloOutput } from "../types/outputs/usuarios/modulo.output";
 import { CriacaoUsuarioInput } from "../types/inputs/usuarios/criacao-usuario.input";
 import { Router } from "@angular/router";
+import jwt_decode from "jwt-decode";
 
 @Injectable()
 export class UsuariosService extends HttpService {
@@ -45,5 +46,13 @@ export class UsuariosService extends HttpService {
                         obs.next(false);
                     });
         });
+    }
+
+    public isUsuarioExterno() {
+        var token = localStorage.getItem("token");
+        var decoded = jwt_decode(token);
+        var perfil = decoded["role"];
+
+        return perfil === "Usuário Externo";
     }
 }
