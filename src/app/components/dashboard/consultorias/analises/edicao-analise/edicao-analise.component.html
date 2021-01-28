@@ -57,7 +57,7 @@
         </td>
         <td>{{ (anexo.dataInclusao | date: 'dd/MM/yyyy HH:mm') || 'Pendente de envio'}}</td>
         <td>
-          <button *ngIf="isEmAndamento()" type="button" class="btn btn-danger" (click)="excluirAnexo(anexo)">Excluir</button>
+          <button *ngIf="usuariosService.isUsuarioExterno() && isEmAndamento()" type="button" class="btn btn-danger" (click)="excluirAnexo(anexo)">Excluir</button>
         </td>
       </tr>
       <tr *ngIf="analiseDetalhada.anexos.length == 0">
